@@ -36,6 +36,10 @@ Double = (
     sqrt        = primitive
     negated     = ( ^0 - self )
     round       = primitive
+
+    "Bitwise"
+    bitXor: argument = primitive
+    bitAnd: argument = (^self & argument)
     
     "Comparing"
     =  argument = primitive
