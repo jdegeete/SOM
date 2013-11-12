@@ -1,0 +1,49 @@
+Semaphore = (
+	| countGuardian count max mutex |
+	
+	initialize = (
+		countGuardian := Mutex new.
+		mutex := Mutex new.
+		count := 0.
+		max := 1.
+	)
+	
+	max: anInteger = ( 
+		(count + 1) < anInteger ifTrue: [ max := anInteger ]
+	)
+
+	critical: aBlock = (
+		self lock.
+		aBlock value.
+		self unlock.
+	)
+	
+	lock = (
+		countGuardian wait.
+		count < (max - 1)
+			ifTrue: [ count := count + 1. countGuardian unlock. ]
+			ifFalse: [ countGuardian unlock. mutex lock ].
+	)
+	
+	unlock = (
+		mutex unlock.
+		countGuardian critical: [
+			count > 0 ifTrue: [ count := count - 1 ]].
+	)
+	
+	isLocked = (
+		^mutex isLocked
+	)
+	
+	---------------
+	
+	new = ( ^self new: 10 )
+	
+	new: anInteger = ( 
+		^super new
+			initialize;
+			max: anInteger
+	)
+	
+	forMutualExclusion = ( ^ self new: 1)
+)

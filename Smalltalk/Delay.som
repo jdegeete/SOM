@@ -1,0 +1,23 @@
+Delay = (
+	|milliseconds|
+	
+	wait = primitive
+	
+	milliseconds: aValue =(
+		aValue > 0 ifTrue: [
+			milliseconds := aValue.
+			]
+	)
+
+	---------
+	
+	forSeconds: seconds =(
+		^self new
+			milliseconds: seconds * 1000.
+	)
+	
+	forMilliseconds: milliseconds = (
+		^self new
+			milliseconds: milliseconds.
+	)
+)
