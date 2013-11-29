@@ -1,0 +1,35 @@
+Thread = (
+	| resumeSignal shouldStop blockToRun name argument |
+	
+	suspend = (
+		shouldStop := true
+	)
+	
+	resume = (
+		shouldStop ifFalse: [ resumeSignal signal ]
+	)
+	
+	name = ( ^name )
+	
+	name: aName = ( name := aName )
+	
+	join = primitive
+	
+	priority: aPriority = primitive
+	
+	----
+	
+	yield = primitive
+    	
+	new = (
+		self error: 'It is not possible to create an empty thread. Use Block>>spawn!'.
+	)
+	
+	current = primitive
+	
+	highPriority = (^30)
+	
+	mediumPriority = (^20)
+	
+	lowPriority = (^1)
+)

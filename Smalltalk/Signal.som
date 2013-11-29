@@ -1,0 +1,8 @@
+Signal = (
+	signal = primitive
+	signalAll = primitive
+	wait = primitive
+	
+	----------------------------
+	new = primitive
+)

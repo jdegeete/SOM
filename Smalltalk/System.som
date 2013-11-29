@@ -85,6 +85,10 @@ System = (
     "Force Garbage Collection"
     fullGC = primitive
     
+    "CPU Info"
+    getNumberOfCPUs = primitive
+
+
     ----------------------------------
     
     "Allocation"
