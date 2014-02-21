@@ -52,9 +52,9 @@ Block = (
     evaluate: argument = ( self value: argument. ^nil )
     
     spawn = primitive
-    
+
     spawnWithArgument: argument = primitive
-                                                                                                                            
+
     spawnAt: priority = (
         ^ self spawn priority: priority
     )
@@ -70,5 +70,6 @@ Block = (
         thread name: name.
         ^ thread
     )
+
     
 )

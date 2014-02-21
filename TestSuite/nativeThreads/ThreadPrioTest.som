@@ -1,0 +1,32 @@
+" Example for thread priorities
+
+  Copyright (C) 2007  Martin Beck, Jan Klimke
+  All rights reserved
+"
+
+ThreadPrioTest = (
+	run = (
+		 |thread1 thread2 thread3 thread4|
+		
+		thread1 := [ Delay forMilliseconds: 54.
+				1 to: 1000 do: [ :i | 
+			('Thread 1: ' + i asString) println.]] spawnAt: 10 named: 'Klaus'.
+		thread2 := [ Delay forMilliseconds: 50.
+				1 to: 1000 do: [ :i | 
+			('Thread 2: ' + i asString) println.]] spawnAt: 20 named: 'Peter'.
+		thread3 := [ Delay forMilliseconds: 50.
+				1 to: 1000 do: [ :i | 
+			('Thread 3: ' + i asString) println.]] spawnAt: 20 named: 'Dieter'.
+		thread4 := [ Delay forMilliseconds: 50.
+			1 to: 1000 do: [ :i | 
+			('Thread 4: ' + i asString) println.]] spawnAt: 30 named: 'Wolfgang'.
+		'Pausing for 1 seconds...' println.
+		'My name is: ' print.
+		thread1 name println.
+		thread2 name println.
+		(Delay forSeconds: 1) wait.
+		thread1 join.
+		thread2 join.
+		Thread highPriority println.
+	)
+)
