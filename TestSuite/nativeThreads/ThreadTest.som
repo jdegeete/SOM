@@ -1,0 +1,24 @@
+" Simple test for threads
+
+  Copyright (C) 2007  Martin Beck, Jan Klimke
+  All rights reserved
+"
+
+ThreadTest = (
+	run = (
+		| threads |
+		
+	
+		threads := Vector new.
+		1 to: 1000 do: [ :index|
+		        threads append: [ |delay|
+			 delay := Delay forSeconds: 5.
+			 delay wait.
+			 index print.
+			 ' done' println.
+			] spawn.
+		].
+			
+		threads do: [ :thread| thread join].
+	)
+)

@@ -44,4 +44,29 @@ Block = (
     "Restarting"
     restart = primitive
     
+    "Thread creation"
+    evaluate = ( self value. ^nil )
+
+    evaluate: argument = ( self value: argument. ^nil )
+    
+    spawn = primitive
+
+    spawnWithArgument: argument = primitive
+
+    spawnAt: priority = (
+        ^ self spawn priority: priority
+    )
+                                                                                                                            
+    spawnNamed: name = (
+        ^ self spawn name: name
+    )
+                                                                                                                            
+    spawnAt: priority named: name = (
+        | thread |
+        thread := self spawn.
+        thread priority: priority.
+        thread name: name.
+        ^ thread
+    )
+
 )
